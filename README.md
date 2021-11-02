@@ -19,24 +19,24 @@
 ```
 sudo fdisk -l | grep sd
 microsd 파티션 확인.
-(ex /dev/sdb -> 여기서 b가 아래의 x로 치환, sdx -> sdb)
+(ex /dev/sdb일때, 아래 명령어 중 sdx대신 sdb 입력)
 ```
 
 ## sd카드 포맷
 여기서 \<Enter\> 부분은 실제 입력 아니고, 엔터로 개행한다.<br>
 ```
 sudo gdisk /dev/sdx
-o\<Enter\>
-y\<Enter\>
-n\<Enter\>
-1\<Enter\>
-40M\<Enter\>
-\<Enter\>
-\<Enter\>
-c\<Enter\>
-PARTLABEL\<Enter\>
-w\<Enter\>
-y\<Enter\>
+o<Enter>
+y<Enter>
+n<Enter>
+1<Enter>
+40M<Enter>
+<Enter>
+<Enter>
+c<Enter>
+PARTLABEL<Enter>
+w<Enter>
+y<Enter>
 ```
 
 ## Jetson 이미지 복사
