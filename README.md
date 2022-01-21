@@ -65,6 +65,9 @@ cd ~/path/to/Linux_for_Tegra
 sudo ./flash.sh jetson-xavier-nx-en715 external
 ```
 
+필요에 따라, flash.sh 전 bootloader/l4t-rootfs-uuid.txt bootloader/l4t-rootfs-uuid.txt_ext 둘중 하나의 생성 및 작성이 필요할 수 있다.<br>
+이 경우 상기 파일을 생성하고, 위에서 기억한 PARTUUID를 입력 후 저장하여 빠져나오면 된다.
+
 이후 부팅 시 externel로 안될 경우 아래 명령어로 다시 플래시한다.
 
 ```sudo ./flash.sh jetson-xavier-nx-en715 mmcblk1p1```
