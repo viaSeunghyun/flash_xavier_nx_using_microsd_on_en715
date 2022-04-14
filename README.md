@@ -36,21 +36,32 @@ n<Enter>
 1<Enter>
 40M<Enter>
 <Enter>
-<Enter>Auto View Readme provides commands and default keybindings for automatically opening whatever readme file is in the current directory, or (with your permission) whatever readme is in the nearest higher directory.
+<Enter>
 c<Enter>
 PARTLABEL<Enter>
 w<Enter>
 y<Enter>
 ```
 
-## Jetson 이미지 복사
+
+## SD카드 포멧
 ```
 sudo mkfs.ext4 /dev/sdx1
 sudo blkid /dev/sdx1
 ```
-
 위에서 `blkid`로 얻은 `PARTUUID`를 기억한다.
 
+### PARTUUID가 확인되지 않았을 경우
+```sudo fdisk -l```를 하여 다음과 같은 에러 메시지를 확인할 수 있다.
+```diff
+-The backup GPT table is corrupt, but the primary appears OK, so that will be used.
+```
+위와 같은 메시지를 확인하였을 때 다음 명령어를 실행해준다.
+```
+sudo sgdisk -e /dev/sdx
+```
+
+## Jetson 이미지 복사
 ```
 sudo mount /dev/sdx1 /mnt
 nano bootloader/l4t-rootfs-uuid.txt_ext
@@ -60,6 +71,8 @@ sudo tar -cpf - * | ( cd /mnt/ ; sudo tar -xpf - )
 sync
 sudo umount /mnt
 ```
+(release >= r32.5) 일 경우 bootloader/l4t-rootfs-uuid.txt_ext 파일을 생성하여 ```PARTUUID```를 넣어주면 된다.
+위 버전보다 낮을 경우 bootloader/l4t-rootfs-uuid.txt 파일을 생성하여 ```PARTUUID```를 넣어준다.
 
 ## 리커버리 모드 진입
 `power off -> press recovery button -> power on -> wait 2 seconds -> release recovery button` <br><br>
@@ -70,9 +83,6 @@ sudo umount /mnt
 cd ~/path/to/Linux_for_Tegra
 sudo ./flash.sh jetson-xavier-nx-en715 external
 ```
-
-필요에 따라, flash.sh 전 bootloader/l4t-rootfs-uuid.txt bootloader/l4t-rootfs-uuid.txt_ext 둘중 하나의 생성 및 작성이 필요할 수 있다.<br>
-이 경우 상기 파일을 생성하고, 위에서 기억한 PARTUUID를 입력 후 저장하여 빠져나오면 된다.
 
 이후 부팅 시 externel로 안될 경우 아래 명령어로 다시 플래시한다.
 
