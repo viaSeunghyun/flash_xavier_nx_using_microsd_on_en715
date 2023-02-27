@@ -4,7 +4,7 @@
 * 별도의 sd카드 리더기
 
 # Pre-Download
-[Download - BSP](https://www.avermedia.com/professional/download/en715#ans_part%7CparentHorizontalTab4) 에서 최신 **NX**이미지를 내려받아 우분투에 옮기거나, 우분투 wget 등을 통해 곧바로 내려받는다.<br><br>
+[Download - BSP](https://www.avermedia.com/professional/product-detail/EN715#download) 에서 **BSP for NX** 탭을 선택 후 원하는 버전을 선택해서 내려받는다.<br><br>
 버전 예시 : ```Version | EN715-**NX**-R1.0.7.4.5.1```<br>
 `wget` 예시 : ```wget https://www.avermedia.com/epaper/file_https.php?file=http://ftp2.avermedia.com/EN715/EN715-NX-R1.0.7.4.5.1.zip```
 <br><br>
