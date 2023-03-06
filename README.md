@@ -90,3 +90,35 @@ sudo ./flash.sh jetson-xavier-nx-en715 external
 
 # Jetson 부팅
 젯슨 **전원 차단 후**, microSD 카드를 삽입하고, 젯슨을 다시 부팅한다.
+
+<br><br>
+
+# SD 카드 백업
+작업된 sd카드를 백업하는 방법은 다음과 같습니다.<br>
+먼저 연결된 SD카드를 마운트 해제 해줍니다.
+```
+sudo umount /dev/sdx
+```
+<br>
+umount를 해주었다면 다음으로는 SD카드를 ```dd```를 사용해 백업해줍니다.
+
+```
+sudo dd if=/dev/sdx conv=sync,noerror bs=64K | gzip -c > ~/backup.img.gz
+```
+<br>
+SD 카드 성능에 따라서 백업 시간은 달라질 수 있습니다.
+
+
+# SD 카드 복원
+백업된 이미지를 새로운 SD 카드에 복원합니다.<br>
+```diff
+- 동일한 제품의 SD카드를 사용하지 않는 경우, 재대로 복원이 되지 않을 수 있습니다.
+```
+<br>
+
+복원 명령어
+```
+sudo su
+gunzip -c ~/bakcup.img.gz | dd of=/dev/sdx bs=64K
+```
+
